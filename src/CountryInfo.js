@@ -1,47 +1,54 @@
 import styled from 'styled-components'
+import Tilt from 'react-tilt'
 
 // Style
-const Container = styled.div`
-    margin: 20pt;
-    padding: 2pt 16pt;
+const Country = styled.div`
+    background-color: #fff;
+    width: 25vw;
+    margin: 6pt;
+    padding: 1pt 8pt;
     border-radius: 5pt;
-    box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
     border-radius: 7pt;
     transition: .2s;
 
     &:hover {
-        box-shadow: 0px 0px 10px 8px rgba(0,0,0,0.3);
+        box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.2);
     }
 `
 
-// width: ${props => props.ratio}%;
+const Bar = styled.div`
+    width: ${props => props.width};
+    height: 10pt;
+    background-color: #3F66A6;
+    margin-bottom: 10pt;
+    border-radius: 3pt;
+`
+
+const InfoStyle = styled.p`
+    padding: 0;
+`
 
 const CountryInfo = ({ country, detailed, largest }) => {
   // Constants
   const ratio = country.area / largest * 100
 
-  const areaBar = {
-    height: '10pt',
-    backgroundColor: '#3F66A6',
-    marginBottom: '6pt',
-    width: ratio + '%',
-    borderRadius: '3pt'
-  }
-
   return (
-    <Container>
+    <Tilt options={{ scale: 1.02, reverse: true, max: 20 }}>
+      <Country>
 
-      <p> <b>{country.flag} {country.name.common}</b> • {Math.round(country.area / 100000) / 10} million km<sup>2</sup></p>
-      <div style={areaBar} />
+        <InfoStyle> <b>{country.flag} {country.name.common}</b> • {Math.round(country.area / 100000) / 10} million km<sup>2</sup></InfoStyle>
+        <Bar width={ratio + '%'} />
 
-      {/* Conditional Rendering */}
-      {detailed &&
-        <div>
-          <p style={{ margin: '0' }}>Capital: {country.capital}</p>
-          <p style={{ margin: '4pt 0 8pt 0' }}>Region: {country.subregion}</p>
-        </div>}
+        {/* Conditional Rendering */}
+        {detailed &&
+          <div>
+            <InfoStyle>Capital: {country.capital}</InfoStyle>
+            <InfoStyle>Region: {country.subregion}</InfoStyle>
+          </div>}
 
-    </Container>
+      </Country>
+    </Tilt>
   )
 }
 
