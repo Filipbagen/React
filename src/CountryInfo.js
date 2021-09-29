@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import Tilt from 'react-tilt'
+import { Link } from 'react-router-dom'
 
 // Style
 const Country = styled.div`
@@ -11,6 +12,7 @@ const Country = styled.div`
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
     border-radius: 7pt;
     transition: .2s;
+    text-decoration: none;
 
     &:hover {
         box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.2);
@@ -32,23 +34,26 @@ const InfoStyle = styled.p`
 const CountryInfo = ({ country, detailed, largest }) => {
   // Constants
   const ratio = country.area / largest * 100
+  const detailedPath = '/country/' + country.cca3
 
   return (
-    <Tilt options={{ scale: 1.02, reverse: true, max: 20 }}>
-      <Country>
+    <Link style={{ textDecoration: 'none', color: 'inherit' }} to={detailedPath}>
+      <Tilt options={{ scale: 1.02, reverse: true, max: 20 }}>
+        <Country>
 
-        <InfoStyle> <b>{country.flag} {country.name.common}</b> • {Math.round(country.area / 100000) / 10} million km<sup>2</sup></InfoStyle>
-        <Bar width={ratio + '%'} />
+          <InfoStyle> <b>{country.flag} {country.name.common}</b> • {Math.round(country.area / 100000) / 10} million km<sup>2</sup></InfoStyle>
+          <Bar width={ratio + '%'} />
 
-        {/* Conditional Rendering */}
-        {detailed &&
-          <div>
-            <InfoStyle>Capital: {country.capital}</InfoStyle>
-            <InfoStyle>Region: {country.subregion}</InfoStyle>
-          </div>}
+          {/* Conditional Rendering */}
+          {detailed &&
+            <div>
+              <InfoStyle>Capital: {country.capital}</InfoStyle>
+              <InfoStyle>Region: {country.subregion}</InfoStyle>
+            </div>}
 
-      </Country>
-    </Tilt>
+        </Country>
+      </Tilt>
+    </Link>
   )
 }
 
