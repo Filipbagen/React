@@ -31,6 +31,7 @@ const InfoStyle = styled.p`
     padding: 0;
 `
 
+// Component
 const CountryInfo = ({ country, detailed, largest }) => {
   // Constants
   const ratio = country.area / largest * 100
