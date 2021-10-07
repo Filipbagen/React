@@ -28,7 +28,6 @@ const Header = ({ displayedCountries }) => {
 
   const newCountry = () => {
     window.localStorage.setItem('toFind', JSON.stringify(generateRandomCountry()))
-    console.log(toFind)
   }
 
   // Constants

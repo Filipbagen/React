@@ -43,12 +43,11 @@ const CountryList = () => {
   const allCountries = countries.filter(country => country.name.common !== 'Antarctica')
   const sortedCountries = allCountries.sort((a, b) => b.area - a.area).slice(0, 15)
 
-  console.log(searchString)
-
   const filteredWords = allCountries.filter(matchText)
   const sortedFilteredWords = filteredWords.slice(0, 15)
 
   return (
+
     <div>
       <Header displayedCountries={sortedFilteredWords} />
       <Input onChange={TextInput} placeholder='Search country...' />

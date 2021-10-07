@@ -6,7 +6,6 @@ const App = () => {
   return (
     <Router>
       <div>
-        {/* <Header displayedCountries={} /> */}
         <Switch>
 
           <Route path='/country/:cca3'>

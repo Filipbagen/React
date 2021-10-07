@@ -34,13 +34,15 @@ const CountryDetails = () => {
 
       {SortedBorderCountries.length === 0
         ? <h1>🤷🏽‍♂️ {getCountryByCca3(cca3).name.common} does not have any border countries</h1>
-        : <div>
-          <h4>Border countries to</h4>
-          <h1>{getCountryByCca3(cca3).flag} {getCountryByCca3(cca3).name.common}</h1>
-          </div>}
+        : (
+          <div>
+            <h4>Border countries to</h4>
+            <h1>{getCountryByCca3(cca3).flag} {getCountryByCca3(cca3).name.common}</h1>
+          </div>
+        )}
 
       <Container>
-        {SortedBorderCountries.map((country, index) => <CountryInfo country={country} detailed key={country.cca3} largest={SortedBorderCountries[0].area} />)}
+        {SortedBorderCountries.map((country) => <CountryInfo country={country} detailed key={country.cca3} largest={SortedBorderCountries[0].area} />)}
       </Container>
     </div>
   )
