@@ -18,14 +18,21 @@ const Input = styled.input`
     outline: none;
     height: 26pt;
     width: 240pt;
-    position: absolute;
-    top: 60pt;
     border-radius: 10pt;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+
+    &:placeholder {
+      margin-left: 10pt;
+  }
+`
+
+const InputDiv = styled.div`
+  text-align:center;
 `
 
 // Component
 const CountryList = () => {
+
   // Function
   const TextInput = (event) => {
     setSearchString(event.target.value)
@@ -50,7 +57,9 @@ const CountryList = () => {
 
     <div>
       <Header displayedCountries={sortedFilteredWords} />
-      <Input onChange={TextInput} placeholder='Search country...' />
+      <InputDiv>
+        <Input onChange={TextInput} placeholder='Search country...' />
+      </InputDiv>
 
       <Container>
         {sortedFilteredWords.map((country, index) => <CountryInfo country={country} detailed={index < 6} key={country.cca3} largest={sortedCountries[0].area} />)}

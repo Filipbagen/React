@@ -5,7 +5,29 @@ import countries from 'world-countries'
 // Style
 const Home = styled.div`
     paddin: 200pt;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+`
+
+const ToFind = styled.div`
+    text-align: center;
+    margin-top: 50pt;
+`
+
+const Button = styled.button`
+  border: none;
+  height: 22pt;
+  width: 120pt;
+  border-radius: 7pt;
+  background-color: #3F66A6;
+  color: white;
+  font-weight: bold;
+  font-size: 12pt;
+  margin: 30pt 0 0 30pt;
+  transition: .2s;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #345891;
+  }
 `
 
 const generateRandomCountry = () => {
@@ -28,6 +50,8 @@ const Header = ({ displayedCountries }) => {
 
   const newCountry = () => {
     window.localStorage.setItem('toFind', JSON.stringify(generateRandomCountry()))
+
+    console.log(window.location.href)
   }
 
   // Constants
@@ -36,18 +60,20 @@ const Header = ({ displayedCountries }) => {
   return (
     <div>
       <Home>
-
-        <button onClick={newCountry}>
+        <Link to='/'>
+          <Button onClick={newCountry}>
             Change Country
-        </button>
-
-        <Link to='/'>🏠 Home</Link>
+          </Button>
+        </Link>
       </Home>
-      {found ? (
-        <h1>🎉 You won!</h1>
-      ) : (
-        <h1>Find {toFind.flag}{toFind.name.common}</h1>
-      )}
+
+      <ToFind>
+        {found ? (
+          <h1>🎉 You won!</h1>
+        ) : (
+          <h1>Find {toFind.name.common}{toFind.flag}</h1>
+        )}
+      </ToFind>
 
     </div>
   )
